@@ -25,9 +25,8 @@ public class Employee {
     @Column(name = "dob")
     private Date dob;
     private String address;
-
-    private GenderOption genderOption;
-    private PeopleOption peopleOption;
+    private String genderOption;
+    private String peopleOption;
     @Column(name = "identity_no")
     private String identityno;
     private byte[] images;
