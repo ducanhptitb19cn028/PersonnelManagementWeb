@@ -1,8 +1,14 @@
 package dajava.personnelmanagementweb.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
+import java.sql.Date;
+import java.util.Set;
+@Data
 @Entity
+@AllArgsConstructor
 @Table(name = "employees")
 public class Employee {
     @Id
@@ -16,36 +22,34 @@ public class Employee {
     private String lastName;
     @Column(name = "email")
     private String email;
+    @Column(name = "dob")
+    private Date dob;
+    private String address;
 
-    public long getId() {
-        return id;
-    }
+    private GenderOption genderOption;
+    private PeopleOption peopleOption;
+    @Column(name = "identity_no")
+    private String identityno;
+    private byte[] images;
 
-    public void setId(long id) {
-        this.id = id;
-    }
+    @OneToOne
+    @JoinColumn(name = "dpid")
+    private Department department;
 
-    public String getFirstName() {
-        return firstName;
-    }
+    @OneToOne
+    @JoinColumn(name = "posid")
+    private Position position;
+    @OneToOne
+    @JoinColumn(name = "salid")
+    private SalaryRank salaryRank;
+    @OneToOne
+    @JoinColumn(name = "alid")
+    private AcademicLevel academicLevel;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "employees_day_off", joinColumns = {@JoinColumn(name = "employee_id",referencedColumnName = "employee_id")},inverseJoinColumns = {@JoinColumn(name = "doid",referencedColumnName = "doid")})
+    Set<DayOff> dayOffs;
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+    public Employee() {
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 }
