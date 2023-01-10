@@ -12,7 +12,7 @@ public class SalaryRank {
     @Column(name = "salid")
     private int salid;
     @Column(name = "allowance")
-    private int allowance;
+    private long allowance;
     @Column(name = "basic_salary")
-    private int basic_salary;
+    private long basic_salary;
 }
