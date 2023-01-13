@@ -30,7 +30,7 @@ public class Employee {
     private String peopleOption;
     @Column(name = "identity_no")
     private String identityno;
-    private byte[] images;
+    private String images;
 
     @OneToOne
     @JoinColumn(name = "dpid")

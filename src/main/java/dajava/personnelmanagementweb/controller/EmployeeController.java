@@ -19,9 +19,9 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
     // display list of employees
-    @GetMapping("/")
-    public String viewHomepage(Model model) {
-        return  findPaginated(1,model);
+    @GetMapping("/employee")
+    public String viewEmployeepage(Model model) {
+        return  findPaginated(1,"firstName","asc",model);
     }
     @GetMapping("/newEmployeesForm")
     public String newEmployeesForm(Model model) {
@@ -49,14 +49,18 @@ public class EmployeeController {
         return "redirect:/";
     }
     @GetMapping("page/{pageNo}")
-    public String findPaginated(@PathVariable(value = "pageNo") int pageNo, Model model){
+    public String findPaginated(@PathVariable(value = "pageNo") int pageNo,@RequestParam("sortField") String sortField,
+                                @RequestParam("sortDirection") String sortDirection ,Model model){
         int pageSize = 5;
-        Page<Employee> page = employeeService.findPaginated(pageNo,pageSize);
+        Page<Employee> page = employeeService.findPaginated(pageNo,pageSize,sortField,sortDirection);
         List<Employee> listEmployees = page.getContent();
         model.addAttribute("currentPage",pageNo);
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("totalItems", page.getTotalElements());
         model.addAttribute("listEmployees", listEmployees);
+        model.addAttribute("sortField",sortField);
+        model.addAttribute("sortDirection",sortDirection);
+        model.addAttribute("reverseOrder",sortDirection.equals("asc") ? "desc" : "asc");
         return "employee_view/employee";
     }
 }
