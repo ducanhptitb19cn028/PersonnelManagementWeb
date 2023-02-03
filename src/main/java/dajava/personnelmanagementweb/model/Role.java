@@ -1,4 +1,5 @@
 package dajava.personnelmanagementweb.model;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -10,13 +11,4 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-
-    public Role() {
-
-    }
-
-    public Role(String name) {
-        super();
-        this.name = name;
-    }
 }
