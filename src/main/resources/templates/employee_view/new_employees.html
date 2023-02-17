@@ -27,7 +27,7 @@
 
         <div class="form-group">
             <label>Gender: </label>
-            <div th:each="option : ${T(dajava.personnelmanagementweb.model.GenderOption).values()}">
+            <div th:each="option : ${T(dajava.personnelmanagementweb.enums.GenderOption).values()}">
                 <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" th:field="*{genderOption}" th:value="${option}" class="custom-control-input">
                     <label class="custom-control-label" th:for="${#ids.prev('genderOption')}" th:text="${option}">option</label>
@@ -51,7 +51,7 @@
             <label>Choose people group:</label><br>
             <select th:field="*{peopleOption}" id="peopleOption" onfocus='this.size=6;' onblur='this.size=0;' onchange='this.size=1; this.blur();'>
                 <option value="" >People option</option>
-                <option th:each="people :  ${T(dajava.personnelmanagementweb.model.PeopleOption).values()}"
+                <option th:each="people :  ${T(dajava.personnelmanagementweb.enums.PeopleOption).values()}"
                         th:value="${people}" th:text="${people}">option</option>
             </select>
         </div><br>

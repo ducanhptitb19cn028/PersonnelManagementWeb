@@ -6,12 +6,13 @@ import java.util.Collection;
 @Data
 @Entity(name = "user")
 public class User {
-    @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+
     @OneToOne
     @JoinColumn(name="employee_id")
     Employee employee;
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userID;
     private String username;
     private String password;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

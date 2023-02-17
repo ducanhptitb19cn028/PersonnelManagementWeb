@@ -3,6 +3,7 @@ package dajava.personnelmanagementweb.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NonNull;
 
 
 import java.sql.Date;
@@ -24,6 +25,7 @@ public class Employee {
     @Column(name = "email")
     private String email;
     @Column(name = "dob")
+
     private Date dob;
     private String address;
     private String genderOption;
